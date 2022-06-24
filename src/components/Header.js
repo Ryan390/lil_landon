@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
-//import menuLinksData from '../data/header_menu_links.json'
 
 const Header = () => {
   const [menuLinksData, setMenuLinksData] = useState([]) 
+  
+  useEffect(() => {
+    loadMenuLinksData();
+  },[]);
 
   const loadMenuLinksData = async() =>
   {
@@ -11,11 +14,7 @@ const Header = () => {
 
      setMenuLinksData(jsonData)
   }
-
-  useEffect(() => {
-    loadMenuLinksData();
-  },[]);
-
+  
   return (
     <header id="intro">
       <article className="fullheight">

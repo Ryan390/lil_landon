@@ -1,7 +1,19 @@
-import React from "react";
-import welcome_gallery_images from '../../data/welcome_gallery_images.json';
+import React, { useState, useEffect } from 'react';
 
 const Welcome = () => {
+    const [welcome_gallery_images, setGalleryImages] = useState([])
+
+    useEffect(() => {
+        loadGalleryImages();
+    }, []);
+
+    const loadGalleryImages = async () => {
+        const response = await fetch('https://h1jk1z1fy3.execute-api.eu-west-1.amazonaws.com/Production/galleryImages');
+        let jsonData = await response.json();
+
+        setGalleryImages(jsonData)
+    }
+    
     return (
         <div className="scene" id="welcome">
             <article className="content">

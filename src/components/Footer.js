@@ -1,7 +1,19 @@
-import footer_links from '../data/footer_links.json';
-
+import React, { useState, useEffect } from 'react';
 
 const Footer = () => {
+    const [footer_links, setFooterLinksData] = useState([])
+
+    useEffect(() => {
+        loadFooterData();
+    }, []);
+
+    const loadFooterData = async () => {
+        const response = await fetch('https://h1jk1z1fy3.execute-api.eu-west-1.amazonaws.com/Production/footerLinks');
+        let jsonData = await response.json();
+
+        setFooterLinksData(jsonData)
+    }
+    
     return (
         <footer className="scene">
             <article className="content">
